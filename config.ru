@@ -6,4 +6,5 @@ end
 
 # mounting controllers
 use UsersController
+use AnimalsController
 run ApplicationController
