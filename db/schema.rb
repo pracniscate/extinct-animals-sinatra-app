@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180825175556) do
+ActiveRecord::Schema.define(version: 20180826131011) do
 
-  create_table "extinct_animals", force: :cascade do |t|
+  create_table "animals", force: :cascade do |t|
     t.string  "name"
     t.string  "type"
     t.integer "last_sighting"
