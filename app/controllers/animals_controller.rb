@@ -4,7 +4,7 @@ class AnimalsController < ApplicationController
     # if not logged in, redirect to the login page
     get '/animals' do
         if logged_in?
-            erb :'animals/show_animals'
+            erb :'/animals/animals'
         else
             redirect '/login'
         end

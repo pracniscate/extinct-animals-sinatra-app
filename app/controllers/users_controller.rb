@@ -6,7 +6,7 @@ class UsersController < ApplicationController
         if !logged_in?
             erb :'/users/create_user'
         else
-            redirect '/show_animals'
+            redirect '/animals'
         end
     end
 
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
             @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
             @user.save
             session[:user_id] = @user.id
-            redirect '/show_animals'
+            redirect '/animals'
         end
     end
 
