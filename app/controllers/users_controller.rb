@@ -26,4 +26,31 @@ class UsersController < ApplicationController
         end
     end
 
+    # renders the login page
+    # if the user is not logged in, directs the login page
+    # if the user is logged in, redirects to the main page of collected animals
+    get '/login' do
+        if !logged_in?
+            erb :'users/login'
+        else
+            redirect '/animals'
+        end
+    end
+
+    # submits the login form
+    # find the user in db based on their username
+    # if the user is found AND the user is authenticated,
+    # set their session to their user_id
+    # and redirect to the main page of collected animals
+    # otherwise, redirect to the sign up page
+    post '/login' do
+        user = User.find_by(username: params[:username])
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
+            redirect '/animals'
+        else
+            redirect '/signup'
+        end
+    end
+
 end
