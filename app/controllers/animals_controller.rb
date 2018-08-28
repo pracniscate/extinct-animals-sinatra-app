@@ -10,4 +10,14 @@ class AnimalsController < ApplicationController
         end
     end
 
+    # renders a form to create a new extinct animal if logged in
+    # redirects to the login page if logged out
+    get '/animals/new' do
+        if logged_in?
+            erb :'/animals/create_animal'
+        else
+            redirect '/login'
+        end
+    end
+
 end
