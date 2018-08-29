@@ -27,18 +27,30 @@ class AnimalsController < ApplicationController
     post '/animals' do
         if !params[:name].blank? && !params[:type].blank? && !params[:last_sighting].blank? && !params[:description].blank? && logged_in?
             # builds a new animal object associated with the currently logged in user
+            binding.pry
             animal = current_user.animals.build(params)
 
-        # saving the animal to the database if params were filled out
-        # upon a successful save, redirects to that animal's page
-        # upon failure to save, redirects back to the new animal form
-        if animal.valid?
-            animal.save
-            redirect "/animals/#{animal.id}"
+            # saving the animal to the database if params were filled out
+            # upon a successful save, redirects to that animal's page
+            # upon failure to save, redirects back to the new animal form
+            if animal.valid?
+                animal.save
+                redirect "/animals/#{animal.id}"
+            else
+                redirect '/animals/create_animal'
+            end
         else
-            redirect '/animals/create_animal'
+            redirect '/animals/create_animal' if logged_in?
+            redirect '/'
         end
     end
 
+    # shows the individual animal page if user is logged in
+    get '/animals/:id' do
+        if logged_in?
+            @animal = Animal.find_by(id: params[:id])
+            erb :'/animals/show'
+        end
+    end
 
 end
