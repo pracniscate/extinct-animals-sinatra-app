@@ -14,6 +14,24 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+    <!--*-* NAVIGATION *-*-->
+    <div class="navbar">
+
+      <!--*-* links visible if logged in *-*-->
+      <% if logged_in? %>
+      <a href="/">Profile</a> <!-- redirects to user's profile page -->
+      <a href="/animals">Extinct Animals</a> <!-- lists all added animals-->
+      <a href="/logout">Log Out</a>
+
+      <!--*-* links visible if NOT logged in *-*-->
+      <% else %>
+      <a href="/login">Log In</a>
+      <a href="/signup">Sign Up</a>
+
+      <% end %>
+
+    </div>
+
     <div class="wrapper">
 
         <%= yield %>
