@@ -24,6 +24,7 @@ class ApplicationController < Sinatra::Base
 
     def current_user
       # returns true if the user_id is in the session hash
+      # @current_user adds persistence
       @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
     end
 
