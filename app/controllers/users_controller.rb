@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     # set their session to their user_id
     # & render the main page containing a collection of animals added
     post '/signup' do
-        if params[:username] == "" || params[:email] == "" || params[:password] == ""
+        if params[:username].blank? || params[:email].blank? || params[:password].blank?
             redirect '/signup'
         else
             @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
