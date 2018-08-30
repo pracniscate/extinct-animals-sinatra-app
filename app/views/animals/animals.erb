@@ -3,8 +3,8 @@
 <h2>All Added Extinct Animals</h2>
 <ol>
     <% Animal.all.each do |animal| %>
-        <li><%= animal.content %></li>
+        <li><%= animal.name %></li>
     <% end %>
-</ol>
+</ol><br>
 
 <a href="/animals/new">Add Another?</a>

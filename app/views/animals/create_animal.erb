@@ -1,17 +1,17 @@
 <h1>Add New Extinct Animal</h1>
 
 <form action='/animals' method="post">
-    <label for="name"> Name of the Animal: </label>
-    <input type="text" name="animal_name"><br>
+    <label for="animal_name"> Name of the Animal: </label>
+    <input type="text" name="name"><br>
 
-    <label for="type"> What type of animal is it? </label>
+    <label for="animal_type"> What type of animal is it? </label>
     <input type="text" name="animal_type"><br>
 
     <label for="last_sighting"> When was it last seen? </label>
-    <input type="text" name="animal_last_sighting"><br>
+    <input type="text" name="last_sighting"><br>
 
     <label for="animal_description"> Please describe the animal: </label>
-    <textarea name="animal description" rows="10" cols="33" wrap="hard"></textarea><br>
+    <textarea name="description" rows="10" cols="33" wrap="hard"></textarea><br>
 
     <button type="submit">Create Animal</button>
 </form>
