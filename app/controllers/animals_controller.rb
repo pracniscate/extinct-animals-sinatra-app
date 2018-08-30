@@ -62,4 +62,23 @@ class AnimalsController < ApplicationController
         end
     end
 
+    # updates the data about an animal if user is logged in
+    # if the update is successful, redirects to that animal's individual page
+    # if the update fails, redirects back to animal's edit form
+    # if user is not logged in, redirects to the login page
+    patch '/animals/:id' do
+        if logged_in?
+            @animal = Animal.find_by(id: params[:id])
+
+            if @animal.update(name: params[:name], animal_type: params[:animal_type], last_sighting: params[:last_sighting], description: params[:last_sighting])
+                redirect "/animals/#{@animal.id}"
+            else
+                redirect "/animals/#{@animal.id}/edit"
+            end
+        else
+            redirect '/login'
+        end
+    end
+
+
 end
