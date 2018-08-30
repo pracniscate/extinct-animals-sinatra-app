@@ -48,4 +48,18 @@ class AnimalsController < ApplicationController
         end
     end
 
+    # renders animal edit form if user is logged in
+    get '/animals/:id/edit' do
+        if logged_in?
+            @animal = Animal.find_by(id: params[:id])
+            if @animal && @animal.user = current_user
+                erb :'/animals/edit'
+            else
+                redirect '/animals'
+            end
+        else
+            redirect '/login'
+        end
+    end
+
 end

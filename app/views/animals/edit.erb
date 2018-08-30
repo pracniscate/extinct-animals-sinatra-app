@@ -1,0 +1,19 @@
+<h1>Edit Animal Info</h1>
+
+<form action="/animals/<%= @animal.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+
+    <label for="animal_name"> Name of the Animal: </label>
+    <input type="text" name="name" value="<%= @animal.name %>"><br>
+
+    <label for="animal_type"> What type of animal is it? </label>
+    <input type="text" name="animal_type" value="<%= @animal.animal_type %>"><br>
+
+    <label for="last_sighting"> When was it last seen? </label>
+    <input type="text" name="last_sighting" value="<%= @animal.last_sighting %>"><br>
+
+    <label for="animal_description"> Please describe the animal: </label>
+    <textarea name="description" value="<%= @animal.description %>" rows="10" cols="33" wrap="hard"></textarea><br>
+
+    <button type="submit">Save Changes</button>
+</form>
