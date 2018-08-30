@@ -2,3 +2,14 @@
 <p><%= @animal.animal_type %><br>
 <p><%= @animal.last_sighting %><br>
 <p><%= @animal.description %><br>
+
+<!-- edit button -->
+<form action="/animals/<%= @animal.id %>/edit" method="get">
+    <button type="submit">Edit</button>
+</form>
+
+<!-- delete button -->
+<form action="/animals/<%= @animal.id %>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit">Delete</button>
+</form>

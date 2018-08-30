@@ -70,7 +70,7 @@ class AnimalsController < ApplicationController
         if logged_in?
             @animal = Animal.find_by(id: params[:id])
 
-            if @animal.update(name: params[:name], animal_type: params[:animal_type], last_sighting: params[:last_sighting], description: params[:last_sighting])
+            if @animal.update(name: params[:name], animal_type: params[:animal_type], last_sighting: params[:last_sighting], description: params[:description])
                 redirect "/animals/#{@animal.id}"
             else
                 redirect "/animals/#{@animal.id}/edit"
@@ -80,5 +80,18 @@ class AnimalsController < ApplicationController
         end
     end
 
+    # deletes an animal's object if user is logged in
+    # and if that animal belongs to currently logged in user
+    delete '/animals/:id/delete' do
+        if logged_in?
+            @animal = Animal.find_by(id: params[:id])
+            if @animal && @animal.user == current_user
+                @animal.delete
+            end
+            redirect '/animals'
+        else
+            redirect '/login'
+        end
+    end
 
 end
