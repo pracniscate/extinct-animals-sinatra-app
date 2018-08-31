@@ -30,7 +30,8 @@ class AnimalsController < ApplicationController
             # saving the animal to the database if params were filled out
             # upon a successful save, redirects to that animal's page
             # upon failure to save, redirects back to the new animal form
-            if animal.save
+            if animal.valid?
+                animal.save
                 redirect "/animals/#{animal.id}"
             else
                 redirect '/animals/create_animal'
