@@ -1,11 +1,18 @@
 <% if logged_in? %>
 
     <p> Welcome, <%= current_user.username %></p>
-    <a href="/logout">Log Out</a>
+    <form action="/logout" method="get">
+        <button class="button" type="submit">Log Out</button>
+    </form>
 
 <% else %>
 
-    <a href="/login">Log In</a>
-    <a href="/signup">Sign Up</a>
+    <form action="/login" method="get">
+        <button class="button" type="submit">Log In</button>
+    </form>
+
+    <form action="/signup" method="get">
+        <button class="button" type="submit">Sign Up</button>
+    </form>
 
 <% end %>

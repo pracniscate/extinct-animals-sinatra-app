@@ -5,11 +5,11 @@
 
 <!-- edit button -->
 <form action="/animals/<%= @animal.id %>/edit" method="get">
-    <button type="submit">Edit</button>
+    <button class="button" type="submit">Edit</button>
 </form>
 
 <!-- delete button -->
 <form action="/animals/<%= @animal.id %>/delete" method="post">
     <input type="hidden" name="_method" value="delete">
-    <button type="submit">Delete</button>
+    <button class="button" type="submit">Delete</button>
 </form>
