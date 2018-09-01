@@ -17,7 +17,7 @@
   body {
     background-color: lightblue;
     color: #333;
-    font-family: Sans-Serif;
+    font-family: 'Mukta', sans-serif;
     line-height: 18px;
   }
 
@@ -35,7 +35,6 @@
   h1 {
     font-size: 36px;
     line-height: 54px;
-    font-family: 'Mukta', sans-serif;
   }
 
   h2 {
@@ -43,18 +42,15 @@
     font-size: 24px;
     line-height: 36px;
     margin-bottom: 16px;
-    font-family: 'Mukta', sans-serif;
   }
 
   h3 {
     font-size: 18px;
     line-height: 36px;
-    font-family: 'Mukta', sans-serif;
   }
 
   p {
     margin-bottom: 18px;
-    font-family: 'Mukta', sans-serif;
   }
 
   /* styling the navigation bar */
@@ -70,7 +66,6 @@
 
   .navbar li {
     float: left;
-    font-family: 'Mukta', sans-serif;
   }
 
   .navbar li a {
