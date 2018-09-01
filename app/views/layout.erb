@@ -19,14 +19,19 @@
 
       <!--*-* links visible if logged in *-*-->
       <% if logged_in? %>
-      <a href="/">Profile</a> <!-- redirects to user's profile page -->
-      <a href="/animals">Extinct Animals</a> <!-- lists all added animals-->
-      <a href="/logout">Log Out</a>
+      <ul>
+        <li><a href="/">Profile</a></li> <!-- redirects to user's profile page -->
+        <li><a href="/animals">Extinct Animals</a></li> <!-- lists all added animals-->
+        <li><a href="/logout">Log Out</a></li>
+      </ul>
 
       <!--*-* links visible if NOT logged in *-*-->
       <% else %>
-      <a href="/login">Log In</a>
-      <a href="/signup">Sign Up</a>
+
+      <ul>
+        <li><a href="/login">Log In</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+      </ul>
 
       <% end %>
 
