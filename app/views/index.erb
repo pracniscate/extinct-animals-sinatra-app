@@ -1,20 +1,22 @@
-<img src="/images/animals-3546011_1920.jpg" alt="Little animal figurines in a yellow background">
+<div class="container">
+    <img src="/images/animals-3546011_1920.jpg" alt="Little animal figurines in a yellow background">
 
-<% if logged_in? %>
+    <% if logged_in? %>
 
-    <p> Welcome, <%= current_user.username %></p>
-    <form action="/logout" method="get">
-        <button class="button" type="submit">Log Out</button>
-    </form>
+        <p> Welcome, <%= current_user.username %></p>
+        <form action="/logout" method="get">
+            <button class="button" type="submit">Log Out</button>
+        </form>
 
-<% else %>
+    <% else %>
 
-    <form action="/login" method="get">
-        <button class="button" type="submit">Log In</button>
-    </form>
+        <form action="/login" method="get">
+            <button style="left: 42%" class="btn-absolute" type="submit">Log In</button>
+        </form>
 
-    <form action="/signup" method="get">
-        <button class="button" type="submit">Sign Up</button>
-    </form>
+        <form action="/signup" method="get">
+            <button style="left: 58%" class="btn-absolute" type="submit">Sign Up</button>
+        </form>
 
-<% end %>
+    <% end %>
+</div>
