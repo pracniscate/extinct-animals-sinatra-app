@@ -3,7 +3,7 @@
 <h2>All Added Extinct Animals</h2>
 <ol>
     <% Animal.all.each do |animal| %>
-        <li><%= animal.name %></li>
+        <li><a href="/animals/<%= animal.id %>"><%= animal.name %></a></li>
     <% end %>
 </ol><br>
 
