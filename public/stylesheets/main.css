@@ -70,6 +70,7 @@
   .container img {
     width: 100%;
     height: auto;
+    padding-bottom: 15px;
   }
 
   .container .btn-absolute {
@@ -93,6 +94,11 @@
   }
 
   /* end of index page styles */
+
+  #profile-wrapper {
+    display: flex;
+    justify-content: center;
+  }
 
   /* shows edit & delete buttons side by side */
   form {

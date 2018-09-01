@@ -3,10 +3,12 @@
 
     <% if logged_in? %>
 
-        <p> Welcome, <%= current_user.username %></p>
-        <form action="/logout" method="get">
-            <button class="button" type="submit">Log Out</button>
-        </form>
+        <h3 id="profile-wrapper"> Welcome, <%= current_user.username %></h3>
+        <div id="profile-wrapper">
+            <form action="/logout" method="get">
+                <button class="button" type="submit">Log Out</button>
+            </form>
+        </div>
 
     <% else %>
 
