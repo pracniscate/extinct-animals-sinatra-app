@@ -60,6 +60,10 @@
     width: 60%; /* 480px / 800px */
   }
 
+  img {
+    width: 100%;
+  }
+
   /* shows edit & delete buttons side by side */
   form {
     display: inline-block;
