@@ -60,6 +60,11 @@
     width: 60%; /* 480px / 800px */
   }
 
+  /* shows edit & delete buttons side by side */
+  form {
+    display: inline-block;
+  }
+
   .button {
     background-color: #f4511e;
     border: none;
