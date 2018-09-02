@@ -1,7 +1,7 @@
 <h1 id="animal-name"><%= @animal.name %></h1>
 <p><%= @animal.animal_type %><br>
 <p>Last Sighting: <%= @animal.last_sighting %><br>
-<p><%= @animal.description %><br>
+<p id="description"><%= @animal.description %><br>
 
 <!-- edit button -->
 <form action="/animals/<%= @animal.id %>/edit" method="get">

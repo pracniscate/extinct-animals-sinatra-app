@@ -192,6 +192,15 @@
     margin-bottom: 10px;
   }
 
+  /* styles the animal description */
+  #description {
+    display: inline-block;
+    column-count: 2;
+    column-gap: 20px;
+    text-align: justify;
+    color: #000c;
+  }
+
   .sidebar {
     background: #eee;
     border: 1px solid #ccc;
