@@ -23,21 +23,24 @@ class AnimalsController < ApplicationController
     # creates an instance of the animal & sends to db if
     # the input fields are filled out & the user is logged in
     post '/animals' do
-        if !params[:name].blank? && !params[:animal_type].blank? && !params[:last_sighting].blank? && !params[:description].blank? && logged_in?
-            # builds a new animal object associated with the currently logged in user
-            animal = current_user.animals.build(params)
-
-            # saving the animal to the database if params were filled out
-            # upon a successful save, redirects to that animal's page
-            # upon failure to save, redirects back to the new animal form
-            if animal.valid?
-                animal.save
-                redirect "/animals/#{animal.id}"
+        if logged_in?
+            # if !params[:name].blank? && !params[:animal_type].blank? && !params[:last_sighting].blank? && !params[:description].blank? && logged_in?
+            if Animal.new(params).valid?
+                # builds a new animal object associated with the currently logged in user
+                animal = current_user.animals.build(params)
+                # saving the animal to the database if params were filled out
+                # upon a successful save, redirects to that animal's page
+                # upon failure to save, redirects back to the new animal form
+                if animal.save
+                    redirect "/animals/#{animal.id}"
+                else
+                    redirect '/animals/create_animal'
+                end
             else
-                redirect '/animals/create_animal'
+                redirect '/animals/create_animal' if logged_in?
             end
         else
-            redirect '/animals/create_animal' if logged_in?
+            redirect '/login'
         end
     end
 
