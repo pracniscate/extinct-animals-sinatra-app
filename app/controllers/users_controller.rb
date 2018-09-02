@@ -17,6 +17,9 @@ class UsersController < ApplicationController
     # & render the main page containing a collection of animals added
     post '/signup' do
         if params[:username].blank? || params[:email].blank? || params[:password].blank?
+
+            flash[:message] = "All fields are required."
+
             redirect '/signup'
         else
             @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])

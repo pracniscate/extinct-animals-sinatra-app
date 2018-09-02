@@ -2,9 +2,14 @@ require './config/environment'
 
 class ApplicationController < Sinatra::Base
 
+  register Sinatra::Flash
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+  end
+
+  configure do
     enable :sessions # keeps state & stores all data in a cookie
     # below is a random value for HMAC-SHA1 equal to 64 bytes,
     # as recommended in Sinatra README
