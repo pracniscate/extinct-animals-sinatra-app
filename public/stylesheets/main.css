@@ -20,6 +20,7 @@
     color: #817b7b;
     font-family: 'Mukta', sans-serif;
     line-height: 18px;
+    text-align: center;
   }
 
   .wrapper {
@@ -165,23 +166,30 @@
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
+    border-radius: 5px;
   }
 
   .button:hover {opacity: 1}
 
-  label, textarea {
-    padding-top: 10px;
+  /* form labels & input styles */
+
+  label {
+    padding: 20px 1px 4px;
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 1px;
   }
 
-  textarea {
+  input, textarea {
     padding: 10px;
-    line-height: 1.5;
     border-radius: 5px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px #999;
+  }
+
+  textarea {
+    line-height: 1.5;
+    margin-bottom: 10px;
   }
 
   .sidebar {
@@ -206,6 +214,22 @@
     padding-top: 20px;
   }
 }
+
+/* main animal index page styles */
+
+  #animal-added-by {
+    padding: 9px;
+  }
+
+  #extinct-animal {
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+  }
+
+  #extinct-animal:hover {
+    color: red;
+  }
 
 @media screen and (max-width: 600px) {
   .wrapper {
