@@ -9,5 +9,5 @@ use Rack::MethodOverride
 
 # mounting controllers
 use UsersController
-use AnimalsController
+use ExAnimalsController
 run ApplicationController

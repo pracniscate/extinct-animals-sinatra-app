@@ -1,4 +1,4 @@
-class AnimalsController < ApplicationController
+class ExAnimalsController < ApplicationController
 
     # renders the collection of extinct animals if the user is logged in
     # if not logged in, redirect to the login page
