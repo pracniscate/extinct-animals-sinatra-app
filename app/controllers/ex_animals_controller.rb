@@ -101,10 +101,14 @@ class ExAnimalsController < ApplicationController
             @animal = Animal.find_by(id: params[:id])
             if @animal && @animal.user == current_user
                 @animal.delete
+
+                flash[:message] = "You successfully deleted this animal."
+                redirect '/animals'
+            else
+                flash[:message] = "You can't delete this animal because you did not create it."
+                redirect '/animals'
             end
 
-            flash[:message] = "You successfully deleted this animal."
-            redirect '/animals'
         else
             redirect '/login'
         end
