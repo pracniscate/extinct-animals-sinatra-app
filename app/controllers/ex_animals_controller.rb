@@ -64,6 +64,7 @@ class ExAnimalsController < ApplicationController
             if @animal && @animal.user == current_user
                 erb :'/animals/edit'
             else
+                flash[:message] = "You can't edit information about this animal because you did not create it."
                 redirect '/animals'
             end
         else
