@@ -52,6 +52,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             redirect '/animals'
         else
+            flash[:message] = "User not found. Please sign up."
             redirect '/signup'
         end
     end

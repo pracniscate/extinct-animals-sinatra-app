@@ -97,6 +97,16 @@
     width: 60%; /* 480px / 800px */
   }
 
+  /* sinatra-flash style */
+
+  div.flash.message.alert-box.radius {
+
+    padding: 10px;
+    text-align: center;
+    background-color: #F8E969;
+
+  }
+
   /* start of index page styles */
 
   .container {

@@ -32,12 +32,17 @@ class ExAnimalsController < ApplicationController
                 # upon a successful save, redirects to that animal's page
                 # upon failure to save, redirects back to the new animal form
                 if animal.save
+
+                    flash[:message] = "Extinct animal successfully added."
+
                     redirect "/animals/#{animal.id}"
                 else
+                    flash[:message] = "Failed to add this animal."
                     redirect '/animals/create_animal'
                 end
             else
-                redirect '/animals/create_animal' if logged_in?
+                flash[:message] = "Failed to add this animal."
+                redirect '/animals/create_animal'
             end
         else
             redirect '/login'
@@ -75,8 +80,12 @@ class ExAnimalsController < ApplicationController
             @animal = Animal.find_by(id: params[:id])
 
             if @animal.update(name: params[:name], animal_type: params[:animal_type], last_sighting: params[:last_sighting], description: params[:description])
+
+                flash[:message] = "Information updated."
                 redirect "/animals/#{@animal.id}"
             else
+
+                flash[:message] = "All fields are required, please."
                 redirect "/animals/#{@animal.id}/edit"
             end
         else
@@ -92,6 +101,8 @@ class ExAnimalsController < ApplicationController
             if @animal && @animal.user == current_user
                 @animal.delete
             end
+
+            flash[:message] = "You successfully deleted this animal."
             redirect '/animals'
         else
             redirect '/login'
