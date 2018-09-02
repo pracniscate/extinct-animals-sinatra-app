@@ -4,6 +4,8 @@
     <% if logged_in? %>
 
         <h3 id="profile-wrapper"> Welcome, <%= current_user.username %></h3>
+        <p>You have added <%= current_user.animals.count %> extinct animal(s).</p>
+
         <div id="profile-wrapper">
             <form action="/logout" method="get">
                 <button class="button" type="submit">Log Out</button>
