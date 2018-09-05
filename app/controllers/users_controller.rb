@@ -51,6 +51,11 @@ class UsersController < ApplicationController
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
             redirect '/animals'
+
+        elsif params[:username].blank? || params[:password].blank?
+            flash[:message] = "Please supply your username or password."
+            redirect '/login'
+
         else
             flash[:message] = "User not found. Please sign up."
             redirect '/signup'
