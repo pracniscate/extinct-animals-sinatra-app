@@ -3,72 +3,60 @@ class ExAnimalsController < ApplicationController
     # renders the collection of extinct animals if the user is logged in
     # if not logged in, redirect to the login page
     get '/animals' do
-        if logged_in?
-            erb :'/animals/animals'
-        else
-            redirect '/login'
-        end
+        redirect_if_not_logged_in
+        erb :'/animals/animals'
     end
 
     # renders a form to create a new extinct animal if logged in
     # redirects to the login page if logged out
     get '/animals/new' do
-        if logged_in?
-            erb :'/animals/create_animal'
-        else
-            redirect '/login'
-        end
+        redirect_if_not_logged_in
+        erb :'/animals/create_animal'
     end
 
     # creates an instance of the animal & sends to db if
     # the input fields are filled out & the user is logged in
     post '/animals' do
-        if logged_in?
-            # if !params[:name].blank? && !params[:animal_type].blank? && !params[:last_sighting].blank? && !params[:description].blank? && logged_in?
-            if Animal.new(params).valid?
-                # builds a new animal object associated with the currently logged in user
-                animal = current_user.animals.build(params)
-                # saving the animal to the database if params were filled out
-                # upon a successful save, redirects to that animal's page
-                # upon failure to save, redirects back to the new animal form
-                if animal.save
+        redirect_if_not_logged_in
 
-                    flash[:message] = "Extinct animal successfully added."
+        if Animal.new(params).valid?
+            # builds a new animal object associated with the currently logged in user
+            animal = current_user.animals.build(params)
+            # saving the animal to the database if params were filled out
+            # upon a successful save, redirects to that animal's page
+            # upon failure to save, redirects back to the new animal form
+            if animal.save
 
-                    redirect "/animals/#{animal.id}"
-                else
-                    flash[:message] = "Failed to add this animal."
-                    redirect '/animals/create_animal'
-                end
+                flash[:message] = "Extinct animal successfully added."
+
+                redirect "/animals/#{animal.id}"
             else
                 flash[:message] = "Failed to add this animal."
                 redirect '/animals/create_animal'
             end
         else
-            redirect '/login'
+            flash[:message] = "Failed to add this animal."
+            redirect '/animals/create_animal'
         end
     end
 
     # shows the individual animal page if user is logged in
     get '/animals/:id' do
-        if logged_in?
-            @animal = Animal.find_by(id: params[:id])
-            erb :'/animals/show'
-        end
+        redirect_if_not_logged_in
+        @animal = Animal.find_by(id: params[:id])
+        erb :'/animals/show'
     end
 
     # renders animal edit form if user is logged in
     get '/animals/:id/edit' do
-        if logged_in?
-            @animal = Animal.find_by(id: params[:id])
-            if @animal && @animal.user == current_user
-                erb :'/animals/edit'
-            else
-                flash[:message] = "You can't edit information about this animal because you did not create it."
-                redirect '/animals'
-            end
+        redirect_if_not_logged_in
+
+        @animal = Animal.find_by(id: params[:id])
+        if animal_belongs_to_user
+            erb :'/animals/edit'
         else
-            redirect '/login'
+            flash[:message] = "You can't edit information about this animal because you did not create it."
+            redirect '/animals'
         end
     end
 
@@ -77,40 +65,35 @@ class ExAnimalsController < ApplicationController
     # if the update fails, redirects back to animal's edit form
     # if user is not logged in, redirects to the login page
     patch '/animals/:id' do
-        if logged_in?
-            @animal = Animal.find_by(id: params[:id])
+        redirect_if_not_logged_in
 
-            if @animal.update(name: params[:name], animal_type: params[:animal_type], last_sighting: params[:last_sighting], description: params[:description])
+        @animal = Animal.find_by(id: params[:id])
 
-                flash[:message] = "Information updated."
-                redirect "/animals/#{@animal.id}"
-            else
+        if @animal.update(name: params[:name], animal_type: params[:animal_type], last_sighting: params[:last_sighting], description: params[:description])
 
-                flash[:message] = "All fields are required, please."
-                redirect "/animals/#{@animal.id}/edit"
-            end
+            flash[:message] = "Information updated."
+            redirect "/animals/#{@animal.id}"
         else
-            redirect '/login'
+
+            flash[:message] = "All fields are required, please."
+            redirect "/animals/#{@animal.id}/edit"
         end
     end
 
     # deletes an animal's object if user is logged in
     # and if that animal belongs to currently logged in user
     delete '/animals/:id/delete' do
-        if logged_in?
-            @animal = Animal.find_by(id: params[:id])
-            if @animal && @animal.user == current_user
-                @animal.delete
+        redirect_if_not_logged_in
 
-                flash[:message] = "You successfully deleted this animal."
-                redirect '/animals'
-            else
-                flash[:message] = "You can't delete this animal because you did not create it."
-                redirect '/animals'
-            end
+        @animal = Animal.find_by(id: params[:id])
+        if animal_belongs_to_user
+            @animal.delete
 
+            flash[:message] = "You successfully deleted this animal."
+            redirect '/animals'
         else
-            redirect '/login'
+            flash[:message] = "You can't delete this animal because you did not create it."
+            redirect '/animals'
         end
     end
 
